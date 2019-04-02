@@ -1,7 +1,6 @@
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -11,6 +10,7 @@ public class FileUtil {
 
     /**
      * divide big file to small
+     *
      * @param path big file's path
      * @param size small file's max size
      * @return number of small files

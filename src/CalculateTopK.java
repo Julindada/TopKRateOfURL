@@ -6,14 +6,28 @@ import java.util.PriorityQueue;
 
 /**
  * Calculate top k rate of URL
- *
+ * <p>
  * Created by julin on 2019-04-01 15:30
  */
 public class CalculateTopK {
-    public static MinHeap calculate(int n) {
+    public static MinHeap calculateByMinHeap(int n) {
+        Map<String, Integer> map = calculate(n);
+        //MinHeap(time:NlogK) to sort todo OR quickSort(time:N)
+        MinHeap minHeap = new MinHeap(100, new PriorityQueue<>(Comparator.comparing(URLEntity::getCount)));
+        for (String key : map.keySet()) {
+            minHeap.add(new URLEntity(key, map.get(key)));
+        }
+        return minHeap;
+    }
+
+    public static URLEntity[] calculateByQuickSort(int n) {
+        return null;
+    }
+
+    public static Map<String, Integer> calculate(int n) {
         //index to constructe name
         int index = 0;
-        //calculate rate of URL by HashMap
+        //calculate rate of URL by HashMap todo OOM
         Map<String, Integer> map = new HashMap<>();
         File file = new File(Main.PATH + "/" + n + index);
         //traversal zipper
@@ -32,13 +46,9 @@ public class CalculateTopK {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            //traversal next file
             file = new File(Main.PATH + n + (++index));
         }
-        //MinHeap(time:klogk) to sort todo OR quickSort(time:k)
-        MinHeap minHeap = new MinHeap(100, new PriorityQueue<>(Comparator.comparing(HeapEntity::getCount)));
-        for (String key : map.keySet()) {
-            minHeap.add(new HeapEntity(key, map.get(key)));
-        }
-        return minHeap;
+        return map;
     }
 }

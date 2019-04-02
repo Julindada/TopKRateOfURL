@@ -1,13 +1,11 @@
-import java.security.PublicKey;
-
 /**
  * Created by julin on 2019-04-01 16:28
  */
-public class HeapEntity {
+public class URLEntity {
     private String URL;
     private Integer count;
 
-    public HeapEntity(String URL, Integer count) {
+    public URLEntity(String URL, Integer count) {
         this.URL = URL;
         this.count = count;
     }
@@ -30,7 +28,7 @@ public class HeapEntity {
 
     @Override
     public String toString() {
-        return "HeapEntity{" +
+        return "URLEntity{" +
                 "URL='" + URL + '\'' +
                 ", count=" + count +
                 '}';
